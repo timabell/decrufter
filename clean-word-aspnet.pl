@@ -44,7 +44,7 @@ sub getRegexList
 	{
 		my $regex = $_;
 		chomp($regex);
-		if ($regex)
+		if ($regex and (substr($regex,0,1) ne "#"))
 		{
 			push(@regexList, $regex);
 		}
