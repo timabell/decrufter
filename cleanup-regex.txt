@@ -1,3 +1,12 @@
+#todo style block in header
+s/<style type="text\/css">(?:.|\n)*?<\/style>\n?//g
+
+#remove empty content blocks
+s/<asp:Content.*?>\s*?<\/asp:Content>\n?//g
+
+#remove empty script blocks
+s/<script.*?>\s*?<\/script>\n?//g
+
 # remove pointless language attributes
 s/lang="EN-GB" *//g
 
@@ -14,6 +23,32 @@ s/ class="MsoNormal"//g
 # including the thoroughly evil "mso-fareast-font-family: &quot;Times New Roman&quot;;"
 s/ ?mso-(?:&quot;|[a-zA-Z0-9.\-: \n])+;?//g
 
+#todo font-family. should clean up: 
+# style="...; font-family: Arial; ..."
+# style='...; font-family: "Arial","sans-serif"; ...'
+s/ ?font-family:\s*(?:((?:&quot;|")?)[a-zA-Z\-]*\1\s*,?\s*)+;?//g;
+
+#todo empty styles
+#s/style='|"[ \t\n]*?'|"//g
+
 # convert bold tags to strong tags
 s/<(\/?)b(?: [^>]*?)?>/<$1strong>/g
+
+#todo empty spans
+
+#todo ole
+
+#todo class="style1"
+
+#todo color:black
+
+#todo (optionally) font size
+
+#todo non ascii chars
+
+#todo <![if !vml]>
+
+#todo font: 7.0pt &quot; times new roman&quot;
+
+
 
