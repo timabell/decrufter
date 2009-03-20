@@ -21,7 +21,7 @@ s/ class="MsoNormal"//g
 
 # remove all "mso-..." style inline elements
 # including the thoroughly evil "mso-fareast-font-family: &quot;Times New Roman&quot;;"
-s/ ?mso-(?:&quot;|[a-zA-Z0-9.\-: \n])+;?//g
+s/ ?mso-(?:\s|&quot;|[a-zA-Z0-9.\-:])*;?//g
 
 #todo font-family. should clean up: 
 # style="...; font-family: Arial; ..."
