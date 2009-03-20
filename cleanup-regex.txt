@@ -1,2 +1,19 @@
-s/mso//g
+# remove pointless language attributes
+s/lang="EN-GB" *//g
+
+# remove all the <o:p> tags
+s/<\/?o:p>//g
+
+# remove all the <st1...> tags
+s/<\/?st1:[^>]*>//g
+
+# remove  class="MsoNormal"
+s/ class="MsoNormal"//g
+
+# remove all "mso-..." style inline elements
+# including the thoroughly evil "mso-fareast-font-family: &quot;Times New Roman&quot;;"
+s/ ?mso-(?:&quot;|[a-zA-Z0-9.\-: \n])+;?//g
+
+# convert bold tags to strong tags
+s/<(\/?)b(?: [^>]*?)?>/<$1strong>/g
 
