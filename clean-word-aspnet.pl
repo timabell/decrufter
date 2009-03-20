@@ -66,6 +66,7 @@ sub processFile
 		print "applying $regex\n";
 #		warn Dumper $regex;
 		eval "\$cleanedData =~ $regex";
+		warn $@ if $@; #show any errors
 	}
 	print "writing back to file ...\n";
 	write_file($targetFilename, $cleanedData);
