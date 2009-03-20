@@ -28,27 +28,28 @@ s/ ?mso-(?:\s|&quot;|[a-zA-Z0-9.\-:])*;?//g
 # style='...; font-family: "Arial","sans-serif"; ...'
 s/ ?font-family:\s*(?:((?:&quot;|")?)[a-zA-Z\-]*\1\s*,?\s*)+;?//g;
 
-#todo empty styles
-#s/style='|"[ \t\n]*?'|"//g
+#todo font: 7.0pt &quot; times new roman&quot;
+s/\s*&quot; ?times new roman&quot;//gi
 
-# convert bold tags to strong tags
+# convert bold tags to strong tags, regardless of contents
 s/<(\/?)b(?: [^>]*?)?>/<$1strong>/g
 
-#todo empty spans
+# class="style1"
+s/ class="style1"//g
 
-#todo ole
+# color:black
+s/\s*color: ?black;?//g
 
-#todo class="style1"
+# empty styles
+s/\s*style=('|")\s*\1//g
 
-#todo color:black
+# empty spans
+s/<span\s*>((?:^span*?)<\/span>/$1/g
 
-#todo (optionally) font size
+# todo non ascii chars
 
-#todo non ascii chars
+# todo <![if !supportLists]>
 
-#todo <![if !vml]>
-
-#todo font: 7.0pt &quot; times new roman&quot;
-
+# todo (optionally) font size
 
 
