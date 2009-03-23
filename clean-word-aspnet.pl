@@ -1,4 +1,21 @@
 #!/usr/bin/perl
+
+#  Script for cleaning word cruft from asp.net files
+#  Copyright (C) 2009 Tim Abell
+
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 use strict;
 use warnings;
 use Data::Dumper; #for debug output
@@ -9,6 +26,7 @@ use HTML::Parser; #for empty span remover
 #package WordCleaner;
 
 print "Script for cleaning word cruft from asp.net files\n";
+print "Licensed under GPL v3. See COPYING for full licence.\n";
 print "Tim Abell 2009\n";
 
 # get arguments
