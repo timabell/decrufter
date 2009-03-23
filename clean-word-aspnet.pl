@@ -18,10 +18,6 @@ print "Tim Abell 2009\n";
 my $regexFileName = shift(@ARGV);
 my @filesToProcess = @ARGV;
 
-#warn Dumper \@filesToProcess;
-#my $name = 'tim';
-#warn Dumper \$name;
-
 my @regexs = getRegexList();
 print "loaded " . length(@regexs) . " regular expressions to run\n";
 
@@ -32,6 +28,7 @@ foreach my $targetFile (@filesToProcess)
 	processFile($targetFile)
 }
 
+print "finished.\n";
 
 
 ## subroutines ##
@@ -81,7 +78,7 @@ sub processFile
 
 sub removeSpans()
 {
-	print "removing empty spans from file.";
+	print "removing empty spans from file...\n";
 	my $targetFilename = $_[0];
 	my @print_span;
 	my @cleanedData;
