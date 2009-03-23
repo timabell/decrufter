@@ -43,9 +43,6 @@ s/\s*color: ?black;?//g
 # empty styles
 s/\s*style=('|")\s*\1//g
 
-# empty spans
-s/<span\s*>((?:^span*?)<\/span>/$1/g
-
 # todo non ascii chars
 
 # todo <![if !supportLists]>
