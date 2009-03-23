@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use Data::Dumper; #for debug output
 use File::Slurp;
+use HTML::Parser; #for empty span remover
+
 
 #package WordCleaner;
 
@@ -71,5 +73,40 @@ sub processFile
 	print "writing back to file ...\n";
 	write_file($targetFilename, $cleanedData);
 #	warn Dumper \$cleanedData;
+	removeSpans($targetFilename);
+}
+
+# remove empty spans
+# http://stackoverflow.com/questions/667130/how-can-i-remove-unused-nested-html-span-tags-with-a-perl-regex
+
+sub removeSpans()
+{
+	print "removing empty spans from file.";
+	my $targetFilename = $_[0];
+	my @print_span;
+	my @cleanedData;
+	my $p = HTML::Parser->new(
+		start_h => [ sub {
+			my ($text, $name, $attr) = @_;
+			if ( $name eq 'span' ) {
+				my $print_tag = %$attr;
+				push @print_span, $print_tag;
+				return if !$print_tag;
+			}
+			push(@cleanedData, $text);
+		}, 'text,tagname,attr'],
+		end_h => [ sub {
+			my ($text, $name) = @_;
+			if ( $name eq 'span' ) {
+				return if !pop @print_span;
+			}
+			push(@cleanedData, $text);
+		}, 'text,tagname'],
+		default_h => [ sub { push(@cleanedData, shift) }, 'text'],
+	);
+	$p->parse_file($targetFilename) or die "Err: $!";
+	$p->eof;
+	print "writing back to file ...\n";
+	write_file($targetFilename, @cleanedData);
 }
 
