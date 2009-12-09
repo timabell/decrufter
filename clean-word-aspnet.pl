@@ -28,6 +28,7 @@ use HTML::Parser; #for empty span remover
 print "Script for cleaning word cruft from asp.net files\n";
 print "Licensed under GPL v3. See COPYING for full licence.\n";
 print "Tim Abell 2009\n";
+print "Usage: clean-word-aspnet.pl file-to-clean ...\n";
 
 # get arguments
 # arg1 is text file with one regex per line to be run
